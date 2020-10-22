@@ -56,4 +56,4 @@ def functionality(request):
     else:
         print(data, '----')
         os.system("sudo systemctl poweroff")
-    return HttpResponse(data)
+    return HttpResponse('ok')

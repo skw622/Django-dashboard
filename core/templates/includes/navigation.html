@@ -125,6 +125,15 @@
                         data: {
                             type: type
                         }
+                    }).done(res => {
+                        if (res == 'ok') {
+                            swal({
+                                title: 'Success',
+                                text: `Server ${type == "reboot" ? "Rebooting" : "Shutting Down"} now ...`,
+                                icon: "success",
+                                button: "Close"
+                            })
+                        }
                     })
                 }
             })
