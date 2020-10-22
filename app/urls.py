@@ -15,4 +15,5 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+    path('functionality', views.functionality, name="functionality")
 ]
