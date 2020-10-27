@@ -10,6 +10,8 @@ from django.http import HttpResponse
 from django import template
 from django.views.decorators.csrf import csrf_exempt
 import os
+import psutil
+import json
 
 
 @login_required(login_url="/login/")
@@ -48,12 +50,15 @@ def pages(request):
 @csrf_exempt
 @login_required(login_url="/login/")
 def functionality(request):
-    data = request.POST.get('type', None);
-    print(data)
+    data = request.POST.get('type', None)
+    memory = psutil.virtual_memory()._asdict()
+    res = json.dumps(memory)
+    print(memory)
+    print(type(memory))
     if (data == 'reboot'):
         print(data)
         os.system("sudo systemctl reboot")
     else:
         print(data, '----')
         os.system("sudo systemctl poweroff")
-    return HttpResponse('ok')
+    return HttpResponse(res)

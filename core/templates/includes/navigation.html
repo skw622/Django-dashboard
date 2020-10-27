@@ -117,8 +117,8 @@
             icon: "warning",
             buttons: ["No", "Yes"],
         })
-            .then((willDelete) => {
-                if (willDelete) {
+            .then((willDo) => {
+                if (willDo) {
                     $.ajax({
                         url: 'functionality',
                         method: "POST",
