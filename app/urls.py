@@ -15,5 +15,6 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
-    path('functionality', views.functionality, name="functionality")
+    path('functionality', views.functionality, name="functionality"),
+    path('getStatus', views.getStatus, name="getStatus")
 ]

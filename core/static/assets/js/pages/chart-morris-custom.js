@@ -336,3 +336,4 @@ $(document).ready(function() {
     // [ Donut-chart ] end
         }, 700);
 });
+
