@@ -61,8 +61,9 @@ def functionality(request):
 @login_required(login_url="/login/")
 def getStatus(request):
     memory = psutil.virtual_memory()._asdict()
-    cpu = psutil.cpu_stats()
-    print(cpu, ' --')
-    res = json.dumps(memory)
-    print(memory)
+    cpu = psutil.cpu_percent(interval=None)
+    data = {
+        "cpu": cpu, "memory": memory
+    }
+    res = json.dumps(data)
     return HttpResponse(res)

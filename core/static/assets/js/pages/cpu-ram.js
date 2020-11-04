@@ -23,19 +23,48 @@ $(document).ready(function () {
                 return `${x} Byte`
             }
         });
+        var cpuGraph = Morris.Donut({
+            element: 'cpu-status',
+            data: [{
+                value: 1,
+                label: 'Free'
+            },
+            {
+                value: 0,
+                label: 'Used'
+            },
+            ],
+            colors: [
+                '#A389D4',
+                '#1de9b6',
+            ],
+            resize: true,
+            formatter: function (x) {
+                return `${x} Percent`
+            }
+        });
         setInterval(() => {
             $.ajax({
                 url: 'getStatus',
                 method: "GET",
             }).done(res => {
                 res = JSON.parse(res)
-                if (res.used) {
+                if (res) {
                     ramGraph.setData([{
-                        value: res.used,
+                        value: res.memory.used,
                         label: 'Used'
                     }, {
-                        value: res.free,
+                        value: res.memory.free,
                         label: 'Free'
+                    },
+                    ])
+                    cpuGraph.setData([{
+                        value: 100 - res.cpu,
+                        label: 'Free'
+                    },
+                    {
+                        value: res.cpu,
+                        label: 'Used'
                     },
                     ])
                 }
